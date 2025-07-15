@@ -101,14 +101,14 @@ public class NacosContextRefresher
 					continue;
 				}
 				String dataId = propertySource.getDataId();
-				registerNacosListener(propertySource.getGroup(), dataId);
+				registerNacosListener(propertySource.getGroup(), dataId); /* 注册nacos配置变化 监听器 */
 			}
 		}
 	}
 
 	private void registerNacosListener(final String groupKey, final String dataKey) {
 		String key = NacosPropertySourceRepository.getMapKey(dataKey, groupKey);
-		Listener listener = listenerMap.computeIfAbsent(key,
+		Listener listener = listenerMap.computeIfAbsent(key,  /* nacos配置变化监听 --> EnvironmentChangeEvent --> ConfigurationPropertiesRebinder -> initializeBean刷新配置Bean */
 				lst -> new AbstractSharedListener() {
 					@Override
 					public void innerReceive(String dataId, String group,
@@ -125,7 +125,7 @@ public class NacosContextRefresher
 					}
 				});
 		try {
-			configService.addListener(dataKey, groupKey, listener);
+			configService.addListener(dataKey, groupKey, listener); /* 添加监听事件 */
 			log.info("[Nacos Config] Listening config: dataId={}, group={}", dataKey,
 					groupKey);
 		}

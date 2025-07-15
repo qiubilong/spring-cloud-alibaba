@@ -1,5 +1,8 @@
+# springboot2.3配置方式，springboot2.6已经废弃
 org.springframework.cloud.bootstrap.BootstrapConfiguration=\
 com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration
+
+# nacos服务自动配置
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.alibaba.cloud.nacos.NacosConfigAutoConfiguration,\
 com.alibaba.cloud.nacos.endpoint.NacosConfigEndpointAutoConfiguration
@@ -14,10 +17,10 @@ com.alibaba.cloud.nacos.logging.NacosLoggingAppRunListener
 org.springframework.boot.env.EnvironmentPostProcessor=\
 com.alibaba.cloud.nacos.configdata.NacosConfigDataMissingEnvironmentPostProcessor
 
-# ConfigData Location Resolvers
+# ConfigData Location Resolvers        配置资源解析器 - nacos:开头
 org.springframework.boot.context.config.ConfigDataLocationResolver=\
 com.alibaba.cloud.nacos.configdata.NacosConfigDataLocationResolver
 
-# ConfigData Loaders
+# ConfigData Loaders                   nacos配置加载器
 org.springframework.boot.context.config.ConfigDataLoader=\
 com.alibaba.cloud.nacos.configdata.NacosConfigDataLoader

@@ -66,7 +66,7 @@ import static com.alibaba.nacos.api.PropertyKeyConst.USERNAME;
  * @author pbting
  * @author <a href="mailto:lyuzb@lyuzb.com">lyuzb</a>
  */
-@ConfigurationProperties(NacosConfigProperties.PREFIX)
+@ConfigurationProperties(NacosConfigProperties.PREFIX) /* 配置Bean - ConfigurationPropertiesBindingPostProcessor 负责赋值 */
 public class NacosConfigProperties {
 
 	/**

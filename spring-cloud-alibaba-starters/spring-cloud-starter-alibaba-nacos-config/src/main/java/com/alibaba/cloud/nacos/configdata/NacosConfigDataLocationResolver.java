@@ -52,13 +52,13 @@ import static com.alibaba.cloud.nacos.configdata.NacosConfigDataResource.NacosIt
  *
  * @author freeman
  * @since 2021.0.1.0
- */
+ */         /* 配置资源解析器 */
 public class NacosConfigDataLocationResolver
 		implements ConfigDataLocationResolver<NacosConfigDataResource>, Ordered {
 	/**
 	 * Prefix for Config Server imports.
 	 */
-	public static final String PREFIX = "nacos:";
+	public static final String PREFIX = "nacos:"; /* 导入配置前缀 ，例 nacos:${spring.application.name}.yaml */
 
 	private final Log log;
 
@@ -155,7 +155,7 @@ public class NacosConfigDataLocationResolver
 		return loadConfigDataResources(location, profiles, properties);
 	}
 
-	private List<NacosConfigDataResource> loadConfigDataResources(
+	private List<NacosConfigDataResource> loadConfigDataResources(  /* 返回 nacos 配置资源 */
 			ConfigDataLocation location, Profiles profiles,
 			NacosConfigProperties properties) {
 		List<NacosConfigDataResource> result = new ArrayList<>();

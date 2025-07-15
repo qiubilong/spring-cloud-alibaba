@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  * @author xiaojing
  * @author freeman
  */
-@Configuration(proxyBeanMethods = false)
+@Configuration(proxyBeanMethods = false) /* springboot2.6已经废弃 */
 @ConditionalOnProperty(name = "spring.cloud.nacos.config.enabled", matchIfMissing = true)
 public class NacosConfigBootstrapConfiguration {
 

@@ -37,7 +37,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnProperty(name = "spring.cloud.nacos.config.enabled", matchIfMissing = true)
-public class NacosConfigAutoConfiguration {
+public class NacosConfigAutoConfiguration { /* nacos自动配置 */
 
 	@Bean
 	@ConditionalOnMissingBean(value = NacosConfigProperties.class, search = SearchStrategy.CURRENT)
@@ -48,7 +48,7 @@ public class NacosConfigAutoConfiguration {
 			return BeanFactoryUtils.beanOfTypeIncludingAncestors(context.getParent(),
 					NacosConfigProperties.class);
 		}
-		return new NacosConfigProperties();
+		return new NacosConfigProperties();/* nacos属性 */
 	}
 
 	@Bean
@@ -56,13 +56,13 @@ public class NacosConfigAutoConfiguration {
 		return new NacosRefreshHistory();
 	}
 
-	@Bean
+	@Bean  /* nacos服务 */
 	public NacosConfigManager nacosConfigManager(
 			NacosConfigProperties nacosConfigProperties) {
 		return new NacosConfigManager(nacosConfigProperties);
 	}
 
-	@Bean
+	@Bean  /* nacos配置监听器 */
 	public NacosContextRefresher nacosContextRefresher(
 			NacosConfigManager nacosConfigManager,
 			NacosRefreshHistory nacosRefreshHistory) {
@@ -74,7 +74,7 @@ public class NacosConfigAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean(search = SearchStrategy.CURRENT)
-	@ConditionalOnNonDefaultBehavior
+	@ConditionalOnNonDefaultBehavior //无ConfigurationPropertiesRebinder就注册一个，springcloud自带已经有
 	public ConfigurationPropertiesRebinder smartConfigurationPropertiesRebinder(
 			ConfigurationPropertiesBeans beans) {
 		// If using default behavior, not use SmartConfigurationPropertiesRebinder.

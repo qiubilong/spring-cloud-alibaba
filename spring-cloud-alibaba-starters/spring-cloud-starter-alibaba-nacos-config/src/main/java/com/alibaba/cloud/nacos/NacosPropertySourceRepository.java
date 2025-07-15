@@ -26,8 +26,8 @@ import com.alibaba.cloud.nacos.client.NacosPropertySource;
  * @author xiaojing
  * @author pbting
  */
-public final class NacosPropertySourceRepository {
-
+public final class NacosPropertySourceRepository {  /* JVM nacos配置文件缓存 */
+	                               // dataId+group
 	private final static ConcurrentHashMap<String, NacosPropertySource> NACOS_PROPERTY_SOURCE_REPOSITORY = new ConcurrentHashMap<>();
 
 	private NacosPropertySourceRepository() {

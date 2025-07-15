@@ -52,7 +52,7 @@ public class NacosConfigManager {
 			synchronized (NacosConfigManager.class) {
 				try {
 					if (Objects.isNull(service)) {
-						service = NacosFactory.createConfigService(
+						service = NacosFactory.createConfigService( /* synchronized双重检查 实例化 nacosService */
 								nacosConfigProperties.assembleConfigServiceProperties());
 					}
 				}

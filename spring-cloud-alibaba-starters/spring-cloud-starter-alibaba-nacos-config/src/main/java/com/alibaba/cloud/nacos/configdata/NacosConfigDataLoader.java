@@ -54,7 +54,7 @@ import static org.springframework.boot.context.config.ConfigData.Option.PROFILE_
  *
  * @author freeman
  * @since 2021.0.1.0
- */
+ */                                           /* nacos配置加载器 - 加载泛型资源 NacosConfigDataResource  */
 public class NacosConfigDataLoader implements ConfigDataLoader<NacosConfigDataResource> {
 
 	private final Log log;
@@ -79,7 +79,7 @@ public class NacosConfigDataLoader implements ConfigDataLoader<NacosConfigDataRe
 
 			NacosItemConfig config = resource.getConfig();
 			// pull config from nacos
-			List<PropertySource<?>> propertySources = pullConfig(configService,
+			List<PropertySource<?>> propertySources = pullConfig(configService, /* 拉取远程nacos配置 */
 					config.getGroup(), config.getDataId(), config.getSuffix(),
 					properties.getTimeout());
 
@@ -87,7 +87,7 @@ public class NacosConfigDataLoader implements ConfigDataLoader<NacosConfigDataRe
 					config.getGroup(), config.getDataId(), new Date(),
 					config.isRefreshEnabled());
 
-			NacosPropertySourceRepository.collectNacosPropertySource(propertySource);
+			NacosPropertySourceRepository.collectNacosPropertySource(propertySource); /* nacos本地缓存 */
 
 			return new ConfigData(propertySources, getOptions(context, resource));
 		}
@@ -138,7 +138,7 @@ public class NacosConfigDataLoader implements ConfigDataLoader<NacosConfigDataRe
 	private List<PropertySource<?>> pullConfig(ConfigService configService, String group,
 			String dataId, String suffix, long timeout)
 			throws NacosException, IOException {
-		String config = configService.getConfig(dataId, group, timeout);
+		String config = configService.getConfig(dataId, group, timeout); /* 拉取远程nacos配置 */
 		logLoadInfo(group, dataId, config);
 		// fixed issue: https://github.com/alibaba/spring-cloud-alibaba/issues/2906 .
 		String configName = group + "@" + dataId;
