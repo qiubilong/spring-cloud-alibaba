@@ -48,7 +48,7 @@ public class NacosRibbonClientConfiguration {
 					config.getClientName());
 			return serverList;
 		}
-		NacosServerList serverList = new NacosServerList(nacosDiscoveryProperties);
+		NacosServerList serverList = new NacosServerList(nacosDiscoveryProperties); /* Nacos服务列表 -- 负载均衡器 ZoneAwareLoadBalancer 引用 */
 		serverList.initWithNiwsConfig(config);
 		return serverList;
 	}

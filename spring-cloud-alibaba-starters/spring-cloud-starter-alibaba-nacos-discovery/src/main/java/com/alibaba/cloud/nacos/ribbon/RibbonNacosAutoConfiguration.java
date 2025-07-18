@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnRibbonNacos
 @ConditionalOnNacosDiscoveryEnabled
 @AutoConfigureAfter(RibbonAutoConfiguration.class)
-@RibbonClients(defaultConfiguration = NacosRibbonClientConfiguration.class)
+@RibbonClients(defaultConfiguration = NacosRibbonClientConfiguration.class) /* 导入feignClient独立配置类 NacosRibbonClientConfiguration  --> 定义 NacosServerList */
 public class RibbonNacosAutoConfiguration {
 
 }

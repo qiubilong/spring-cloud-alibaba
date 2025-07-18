@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 public class NacosServiceAutoConfiguration {
 
 	@Bean
-	public NacosServiceManager nacosServiceManager() {
+	public NacosServiceManager nacosServiceManager() {  /* nacos服务 */
 		return new NacosServiceManager();
 	}
 

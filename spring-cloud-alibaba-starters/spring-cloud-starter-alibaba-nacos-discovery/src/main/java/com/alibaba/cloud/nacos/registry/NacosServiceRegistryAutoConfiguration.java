@@ -47,7 +47,7 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureAfter({ AutoServiceRegistrationConfiguration.class,
 		AutoServiceRegistrationAutoConfiguration.class,
 		NacosDiscoveryAutoConfiguration.class })
-public class NacosServiceRegistryAutoConfiguration {
+public class NacosServiceRegistryAutoConfiguration {/* nacos服务注册 */
 
 	@Bean
 	public NacosServiceRegistry nacosServiceRegistry(
@@ -72,7 +72,7 @@ public class NacosServiceRegistryAutoConfiguration {
 			NacosServiceRegistry registry,
 			AutoServiceRegistrationProperties autoServiceRegistrationProperties,
 			NacosRegistration registration) {
-		return new NacosAutoServiceRegistration(registry,
+		return new NacosAutoServiceRegistration(registry, /* nacos服务注册 */
 				autoServiceRegistrationProperties, registration);
 	}
 

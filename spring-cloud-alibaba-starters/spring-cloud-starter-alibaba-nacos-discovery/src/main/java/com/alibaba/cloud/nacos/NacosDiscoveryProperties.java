@@ -65,7 +65,7 @@ import static com.alibaba.nacos.api.PropertyKeyConst.USERNAME;
  * @author <a href="mailto:78552423@qq.com">eshun</a>
  */
 @ConfigurationProperties("spring.cloud.nacos.discovery")
-public class NacosDiscoveryProperties {
+public class NacosDiscoveryProperties { /* nacos配置 &  服务实例 */
 
 	private static final Logger log = LoggerFactory
 			.getLogger(NacosDiscoveryProperties.class);
@@ -80,7 +80,7 @@ public class NacosDiscoveryProperties {
 	/**
 	 * nacos discovery server address.
 	 */
-	private String serverAddr;
+	private String serverAddr;  /* nacos服务地址 */
 
 	/**
 	 * the nacos authentication username.
@@ -220,7 +220,7 @@ public class NacosDiscoveryProperties {
 	private Environment environment;
 
 	@Autowired
-	private NacosServiceManager nacosServiceManager;
+	private NacosServiceManager nacosServiceManager;  /* nacos服务器 */
 
 	@Autowired
 	private ApplicationEventPublisher applicationEventPublisher;

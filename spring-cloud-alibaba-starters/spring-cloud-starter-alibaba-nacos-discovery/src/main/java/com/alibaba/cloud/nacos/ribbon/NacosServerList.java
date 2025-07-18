@@ -33,7 +33,7 @@ public class NacosServerList extends AbstractServerList<NacosServer> {
 
 	private NacosDiscoveryProperties discoveryProperties;
 
-	private String serviceId;
+	private String serviceId; /* 服务名 - mall-order */
 
 	public NacosServerList(NacosDiscoveryProperties discoveryProperties) {
 		this.discoveryProperties = discoveryProperties;
