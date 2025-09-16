@@ -31,8 +31,8 @@ public final class NacosPropertiesPrefixer {
 
 	/**
 	 * prefix from spi provider.
-	 */
-	public static final String PREFIX = getPrefixFromSpi();
+	 */   /* 饿汉式单例 */
+	public static final String PREFIX = getPrefixFromSpi();/* spring.cloud.nacos */
 
 	private NacosPropertiesPrefixer() {
 	}
@@ -40,7 +40,7 @@ public final class NacosPropertiesPrefixer {
 	private static String getPrefixFromSpi() {
 		ServiceLoader<NacosPropertiesPrefixProvider> load = ServiceLoader.load(NacosPropertiesPrefixProvider.class);
 		for (NacosPropertiesPrefixProvider provider : load) {
-			return provider.getPrefix();
+			return provider.getPrefix(); /* SpringCloudNacosPropertiesPrefixProvider 返回 spring.cloud.nacos */
 		}
 		return "";
 	}

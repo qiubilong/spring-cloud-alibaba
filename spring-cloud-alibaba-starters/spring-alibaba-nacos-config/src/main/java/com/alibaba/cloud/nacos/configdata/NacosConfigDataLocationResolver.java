@@ -75,7 +75,7 @@ public class NacosConfigDataLocationResolver
 	public int getOrder() {
 		return -1;
 	}
-
+    /* 读取配置 NacosConfigProperties */
 	protected NacosConfigProperties loadProperties(
 			ConfigDataLocationResolverContext context) {
 		Binder binder = context.getBinder();
@@ -86,10 +86,10 @@ public class NacosConfigDataLocationResolver
 			nacosConfigProperties = context.getBootstrapContext()
 					.get(NacosConfigDataLoadProperties.class);
 		}
-		else {
+		else {                          /* 前缀 spring.cloud.nacos */
 			String nacosPrefix = NacosPropertiesPrefixer.getPrefix(context.getBinder());
 
-			String nacosConfigPrefix = nacosPrefix + ".config";
+			String nacosConfigPrefix = nacosPrefix + ".config"; /* 前缀 spring.cloud.nacos.config */
 
 			nacosConfigProperties = binder
 					.bind(nacosPrefix, Bindable.of(NacosConfigDataLoadProperties.class),
@@ -118,7 +118,7 @@ public class NacosConfigDataLocationResolver
 	@Override
 	public boolean isResolvable(ConfigDataLocationResolverContext context,
 			ConfigDataLocation location) {
-		if (!location.hasPrefix(getPrefix())) {
+		if (!location.hasPrefix(getPrefix())) { /* 前缀 nacos: */
 			return false;
 		}
 		String prefix = NacosPropertiesPrefixer.getPrefix(context.getBinder());
@@ -139,7 +139,7 @@ public class NacosConfigDataLocationResolver
 			ConfigDataResourceNotFoundException {
 		return Collections.emptyList();
 	}
-
+	/* 激活环境配置 profile 再 返回 nacos配置资源 */
 	@Override
 	public List<NacosConfigDataResource> resolveProfileSpecific(
 			ConfigDataLocationResolverContext resolverContext,
@@ -149,11 +149,11 @@ public class NacosConfigDataLocationResolver
 
 		ConfigurableBootstrapContext bootstrapContext = resolverContext
 				.getBootstrapContext();
-
-		bootstrapContext.registerIfAbsent(NacosConfigProperties.class,
+        /* 注册nacos临时实例 到 启动引导类上下文，用于后续nacos配置加载 */
+		bootstrapContext.registerIfAbsent(NacosConfigProperties.class, /* 注册临时实例 - nacos配置对象 - NacosConfigProperties */
 				InstanceSupplier.of(properties));
 
-		registerConfigManager(properties, bootstrapContext);
+		registerConfigManager(properties, bootstrapContext);/* 注册临时实例 - nacos服务对象 - NacosConfigManager */
 
 		return loadConfigDataResources(location, profiles, properties);
 	}
@@ -199,7 +199,7 @@ public class NacosConfigDataLocationResolver
 			ConfigurableBootstrapContext bootstrapContext) {
 		if (!bootstrapContext.isRegistered(NacosConfigManager.class)) {
 			bootstrapContext.register(NacosConfigManager.class,
-					InstanceSupplier.of(NacosConfigManager.getInstance(properties)));
+					InstanceSupplier.of(NacosConfigManager.getInstance(properties))); /* 实例化临时实例 NacosConfigManager */
 		}
 	}
 

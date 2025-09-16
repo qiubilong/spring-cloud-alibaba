@@ -45,7 +45,7 @@ public class NacosConfigManager {
 	public static NacosConfigManager getInstance() {
 		return INSTANCE;
 	}
-
+    /* 懒汉式单例  */
 	public static NacosConfigManager getInstance(NacosConfigProperties properties) {
 		if (INSTANCE != null) {
 			return INSTANCE;
